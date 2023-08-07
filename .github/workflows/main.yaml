@@ -29,5 +29,6 @@ jobs:
               uses: actions/download-artifact@v3
             - shell: bash
               run: |
+                cd /home/runner/work/PaymentSystem/PaymentSystem/artifact
                 chmod +x AccountTests
                 ./AccountTests
