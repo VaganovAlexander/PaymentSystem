@@ -1,0 +1,24 @@
+name: CI
+
+on:
+    pull_request:
+        branches: [ "*" ]
+    push:
+        branches: [ "*" ]
+
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: Preparing
+              run: sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install cmake libgtest-dev g++
+            - name: Build
+              run: echo "soon..."
+    Tests:
+        needs: Build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: Tests
+              run: mkdir build && cd build && cmake .. && make && chmod +x AccountTests && ./AccountTests

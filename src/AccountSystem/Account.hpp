@@ -21,6 +21,11 @@ class Card {
   Card& operator=(const Card& other) noexcept = default;
   Card& operator=(Card&& other) noexcept = default;
   bool operator==(const Card& other) const;
+  bool IsValid() const;
+  std::string get_number() const;
+  std::string get_name() const;
+  std::string get_date() const;
+  std::string get_cvv() const;
 };
 
 class Account {

@@ -19,6 +19,7 @@
 
 
 ## TODO
+- [ ] Security of data
 - [ ] Make it compatible with Windows and MacOS
 - [ ] Optimization
 - [ ] Ability to highstand high loads
