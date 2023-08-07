@@ -4,21 +4,31 @@ on:
     pull_request:
         branches: [ "*" ]
     push:
-        branches: [ "*" ]
+        branches: [ "main" ]
 
 jobs:
     Build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v1
+            - uses: actions/checkout@v3
             - name: Preparing
               run: sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install cmake libgtest-dev g++
             - name: Build
               run: echo "soon..."
+            - name: Uploading Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: artifact
+                path: .
+                retention-days: 5
     Tests:
         needs: Build
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v1
+            - name: Download artifact
+              uses: actions/download-artifact@v3
+              with:
+                name: artifact
+            - uses: actions/checkout@v3
             - name: Tests
               run: mkdir build && cd build && cmake .. && make && chmod +x AccountTests && ./AccountTests
